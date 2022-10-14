@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <title>Visa Card</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        font-family: "Roboto";
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+      }
+
+      .main_container {
+        display: flex;
+        flex-direction: column;
+        width: auto;
+        min-height: 12rem;
+        margin: 0 auto;
+        justify-content: space-between;
+        position: relative;
+        -moz-transform: perspective(1200px);
+        -webkit-perspective: 1200px;
+        perspective: 1200px;
+      }
+
+      .flip_box {
+        position: relative;
+        transition: all 0.5s ease-out;
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        margin: 1rem 0.5rem;
+      }
+
+      .logo_container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 30px 30px 0 30px;
+      }
+
+      .logo_container_left {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .card_number {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: white;
+        margin: 0 30px;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 21px;
+      }
+
+      .card_number_show {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: white;
+        margin: 0 30px;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 23.44px;
+      }
+
+      .card_number input {
+        background: transparent;
+        color: white;
+        border: none;
+        font-size: 32px;
+      }
+
+      .expiry_container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        color: white;
+        gap: 20px;
+      }
+
+      .expiry {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .cvv {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        text-transform: uppercase;
+      }
+
+      .cvv input {
+        background: transparent;
+        color: white;
+        border: none;
+        width: 5rem;
+        font-size: 17px;
+      }
+
+      .card_holder {
+        color: white;
+        font-size: 20px;
+        text-transform: uppercase;
+      }
+
+      .footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 30px 30px;
+      }
+
+      .footer_left {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 21px;
+      }
+
+      .footer_text {
+        color: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .footer_text img {
+        width: 25px;
+        height: 25px;
+      }
+
+      .white_text {
+        color: white;
+      }
+
+      .front,
+      .back {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        min-height: 14rem;
+        margin: 0 auto;
+        justify-content: space-between;
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        backface-visibility: hidden;
+        background: black;
+        border-radius: 17px;
+      }
+
+      .back {
+        -webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -ms-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+      }
+
+      .back_footer {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 40px;
+        margin: 0 30px 30px;
+      }
+
+      .back_footer_div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .flipped {
+        -webkit-transform: rotateY(-180deg);
+        -moz-transform: rotateY(-180deg);
+        -ms-transform: rotateY(-180deg);
+        transform: rotateY(-180deg);
+      }
+
+      .s_round {
+        position: absolute;
+        right: 8px;
+        top: 8px;
+        width: 31px;
+        height: 31px;
+        border-radius: 50%;
+        transition: all 0.2s linear;
+      }
+
+      .s_round:hover {
+        cursor: pointer;
+      }
+
+      .back_footer_text {
+        font-weight: 400;
+        font-size: 10px;
+        line-height: 12px;
+        margin-bottom: 4px;
+      }
+
+      .back_footer_sub_text {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+      }
+
+      /* .s_round_click {
+        transform: scale(1.7);
+      } */
+
+      .s_arrow {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.35s linear;
+        color: white;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        position: absolute;
+      }
+
+      .s_arrow_rotate {
+        transform: rotateY(180deg);
+      }
+
+      @media all and (min-width: 300px) {
+        .card_number input {
+          width: 100%;
+        }
+
+        .expiry_container {
+          gap: 10px;
+        }
+
+        .expiry {
+          gap: 5px;
+        }
+
+        .cvv {
+          gap: 5px;
+        }
+
+        .cvv input {
+          width: 100%;
+        }
+
+        .card_number input {
+          font-size: 18px;
+        }
+
+        .card_holder {
+          font-size: 15px;
+        }
+
+        .footer {
+          font-size: 12px;
+        }
+
+        .footer_text {
+          gap: 4px;
+        }
+      }
+
+      @media all and (min-width: 576px) {
+        .expiry_container {
+          gap: 40px;
+        }
+
+        .footer {
+          font-size: 17px;
+        }
+
+        .footer_text {
+          gap: 12px;
+        }
+      }
+
+      @media all and (min-width: 768px) {
+        .card_number {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 40px;
+          color: white;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="main_container">
+      <div class="flip_box">
+        <div class="front">
+          <div class="logo_container">
+            <div class="logo_container_left">
+              <img src="./icn_sim_new.png" width="34px" height="27px" />
+              <img src="./icn_signal_new.png" width="14px" height="14px" />
+            </div>
+            <div class="logo_container_right">
+              <img src="./app_icon_new.png" width="50px" height="30px" />
+            </div>
+          </div>
+          <div class="card_number">
+            <span>xxxx</span><span>xxxx</span><span>xxxx</span><span>xxxx</span>
+          </div>
+          <div class="footer">
+            <div class="footer_left">
+              <div class="white_text">Jon Snow</div>
+            </div>
+            <img src="./visa_new.png" width="43px" height="14px" />
+          </div>
+        </div>
+        <div class="back">
+          <div class="logo_container">
+            <div class="logo_container_right">
+              <img src="./app_icon_new.png" width="35px" height="20px" />
+            </div>
+          </div>
+          <div class="card_number_show">
+            <span>4554</span><span>4666</span><span>5243</span><span>6754</span>
+          </div>
+          <div class="back_footer">
+            <div class="back_footer_div">
+              <div class="white_text back_footer_text">Valid Thru</div>
+              <div class="white_text back_footer_sub_text">08/22</div>
+            </div>
+            <div class="back_footer_div">
+              <div class="white_text back_footer_text">CVV</div>
+              <div class="white_text back_footer_sub_text">378</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="s_round">
+        <div class="s_arrow">
+          <img
+            src="./flip_card_front_img.png"
+            width="50px"
+            height="40px"
+            id="rotate_icon"
+          />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+  const switchVisibility = () => {
+    const cvvNumberField = document.querySelector("#hideCvvNumber");
+    if (cvvNumberField.getAttribute("type") === "tel") {
+      cvvNumberField.setAttribute("type", "password");
+    } else cvvNumberField.setAttribute("type", "tel");
+  };
+
+  function copyTextFromElement(elementID) {
+    let element = document.getElementById(elementID); //select the element
+    let elementText = element.value; //get the text content from the element
+    copyText(elementText); //use the copyText function below
+  }
+  //Copy Function
+  function copyText(text) {
+    navigator.clipboard.writeText(text);
+  }
+
+  $(document).ready(function () {
+    const main_containet = ".main_container";
+    $(main_containet).click(function () {
+      $(".flip_box").toggleClass("flipped");
+      $(this).addClass("s_round_click");
+      $(".s_arrow").toggleClass("s_arrow_rotate");
+      if ($("#rotate_icon").attr("src") === "./flip_card_front_img.png")
+        $("#rotate_icon").attr("src", "./flip_card_back_img.png");
+      else if ($("#rotate_icon").attr("src") === "./flip_card_back_img.png")
+        $("#rotate_icon").attr("src", "./flip_card_front_img.png");
+      return false;
+    });
+    const s_round = ".s_round";
+    $(s_round).click(function () {
+      $(".flip_box").toggleClass("flipped");
+      $(this).addClass("s_round_click");
+      $(".s_arrow").toggleClass("s_arrow_rotate");
+      if ($("#rotate_icon").attr("src") === "./flip_card_front_img.png")
+        $("#rotate_icon").attr("src", "./flip_card_back_img.png");
+      else if ($("#rotate_icon").attr("src") === "./flip_card_back_img.png")
+        $("#rotate_icon").attr("src", "./flip_card_front_img.png");
+      return false;
+    });
+
+    $(main_containet).on("transitionend", function () {
+      $(this).removeClass("s_round_click");
+      return false;
+    });
+    $(s_round).on("transitionend", function () {
+      $(this).removeClass("s_round_click");
+      return false;
+    });
+  });
+</script>
